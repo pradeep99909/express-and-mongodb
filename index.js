@@ -12,7 +12,13 @@ app.post('/register',(req,res)=>{
   mongo_function.insert(req.body.name,req.body.email,(response)=>{
     res.json(response)
   })
-  
+})
+
+app.get('/get_user',(req,res)=>{
+  res.setHeader('Access-Control-Allow-Origin','*')
+  mongo_function.read((response)=>{
+    res.json(response)
+  })
 })
 
 

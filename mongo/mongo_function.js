@@ -13,6 +13,19 @@ class Mongo {
             });
         });
     }
+
+    read(callback){
+        MongoClient.connect(url, {useUnifiedTopology: true }, function(err,db){
+            if(err){ throw err }
+            var dbo = db.db("stock");
+            dbo.collection('user').find({}).toArray((err,result)=>{
+                if(err){ throw err }
+                return callback(result)
+            })
+
+        })
+    }
+
 }
 
 
